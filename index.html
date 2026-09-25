@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ann 🎂</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow-x:hidden;
+  font-family:Georgia,"Times New Roman",serif;
+  background:linear-gradient(135deg,#fff1f8,#f3e8ff,#e0f2fe);
+  color:#442044; text-align:center;
+}
+.page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 16px;position:relative}
+.card{
+  width:min(680px,94vw); padding:30px 22px 36px; border-radius:28px;
+  background:rgba(255,255,255,.86); backdrop-filter:blur(10px);
+  box-shadow:0 20px 60px rgba(80,35,90,.18); position:relative; z-index:2;
+}
+.badge{font-family:Arial,sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#9b4d91;font-weight:700}
+h1{font-size:clamp(42px,10vw,76px);margin:10px 0 4px;color:#c23b78}
+.subtitle{font-size:19px;margin:0 0 22px;color:#694268}
+.cake{font-size:76px;animation:bounce 1.8s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(-9px)}}
+.envelope{
+  margin:20px auto; width:min(390px,88%); min-height:210px; border-radius:18px;
+  background:linear-gradient(145deg,#ffd6e8,#f7c7dc); padding:28px 20px;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.65),0 12px 30px rgba(150,60,110,.15);
+}
+.envelope h2{margin:4px 0 14px;color:#9d275f}
+.envelope p{line-height:1.7;margin:8px 0}
+button{
+  border:0;border-radius:999px;padding:14px 24px;margin-top:10px;
+  background:#c23b78;color:white;font-size:16px;font-weight:700;cursor:pointer;
+  box-shadow:0 8px 20px rgba(194,59,120,.28);
+}
+button:active{transform:scale(.97)}
+.letter{display:none;text-align:left;margin-top:24px;padding:24px;border-radius:20px;background:#fff8fc;line-height:1.85;font-size:17px}
+.letter.show{display:block;animation:appear .7s ease}
+.letter .sign{margin-top:22px;font-weight:bold;text-align:right;color:#a52e69}
+@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.footer{margin-top:22px;font:13px Arial,sans-serif;color:#8b6683}
+.float{position:fixed;bottom:-50px;z-index:1;animation:rise linear forwards;pointer-events:none}
+@keyframes rise{to{transform:translateY(-115vh) rotate(20deg);opacity:0}}
+.confetti{position:fixed;top:-20px;z-index:3;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+</style>
+</head>
+<body>
+<div class="page">
+  <main class="card">
+    <div class="badge">A little birthday surprise</div>
+    <div class="cake">🎂</div>
+    <h1>Happy Birthday, Ann! 🎉</h1>
+    <p class="subtitle">To a very special niece ❤️</p>
+
+    <div class="envelope">
+      <h2>For You, Ann 💌</h2>
+      <p>Someone special deserves a special birthday message...</p>
+      <p>Tap below to open yours ✨</p>
+      <button onclick="openLetter()">Open Your Birthday Message 🎁</button>
+    </div>
+
+    <section class="letter" id="letter">
+      <p><strong>Dear Ann,</strong></p>
+
+      <p>Happy Birthday to you! 🎂🥳</p>
+
+      <p>
+        Today is a beautiful reminder of how special you are and how much
+        joy you bring to the people around you. As you begin another year
+        of your life, I pray that it comes with happiness, good health,
+        success, peace and many wonderful memories.
+      </p>
+
+      <p>
+        May you continue to grow into the amazing person you are meant to be.
+        Never stop believing in yourself, never be afraid to dream big, and
+        always remember that you are loved and appreciated.
+      </p>
+
+      <p>
+        May this new chapter bring you closer to your dreams and give you
+        plenty of reasons to smile. Enjoy your special day, Ann—you deserve
+        every bit of happiness that comes your way! ❤️
+      </p>
+
+      <p><strong>Happy Birthday once again! 🎉🎂💐</strong></p>
+
+      <div class="sign">
+        With lots of love,<br>
+        Uncle Zackie ❤️
+      </div>
+    </section>
+
+    <div class="footer">Made especially for Ann • Keep smiling 😊</div>
+  </main>
+</div>
+
+<script>
+function openLetter(){
+  document.getElementById("letter").classList.add("show");
+  burst();
+  document.getElementById("letter").scrollIntoView({behavior:"smooth",block:"center"});
+}
+const symbols=["💖","💗","💕","💝","✨","🎈","🌸","🎀"];
+function floating(){
+  const el=document.createElement("div");
+  el.className="float";
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=(18+Math.random()*24)+"px";
+  el.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),10000);
+}
+setInterval(floating,650);
+
+function burst(){
+  const pieces=["🎉","🎊","✨","💖","🌸","🎈"];
+  for(let i=0;i<45;i++){
+    const el=document.createElement("div");
+    el.className="confetti";
+    el.textContent=pieces[Math.floor(Math.random()*pieces.length)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=(14+Math.random()*20)+"px";
+    el.style.animationDuration=(2+Math.random()*2.5)+"s";
+    el.style.animationDelay=(Math.random()*.7)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),4500);
+  }
+}
+</script>
+</body>
+</html>
